@@ -8,7 +8,7 @@ class Wrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "this is text in Wrapper"
+      text: "ラッパーに善人はいない説"
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -22,8 +22,8 @@ class Wrapper extends React.Component {
         <Preview text={text} />
         <TextArea
           id="text"
-          cols="30"
-          rows="10"
+          cols="50"
+          rows="2"
           value={text}
           handleChange={this.handleChange}
         />
