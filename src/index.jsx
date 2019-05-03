@@ -2,11 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Preview from "./Preview.jsx";
 import TextArea from "./TextArea.jsx";
+import Downloader from "./downloader";
 import "./index.sass";
 
 class Wrapper extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       text: "ラッパーに善人はいない"
     };
@@ -15,6 +16,14 @@ class Wrapper extends React.Component {
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value });
   }
+
+  _download() {
+    const svg = document.getElementById("svg-preview");
+    if (!window.confirm("ダウンロードしますか?")) return;
+
+    Downloader.svg(svg, 700, 470);
+  }
+
   render() {
     const { text } = this.state;
     return (
@@ -28,6 +37,7 @@ class Wrapper extends React.Component {
           value={text}
           handleChange={this.handleChange}
         />
+        <button onClick={this._download.bind(this)}>ダウンロードする</button>
       </div>
     );
   }

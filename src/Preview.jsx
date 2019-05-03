@@ -40,12 +40,10 @@ class Preview extends React.Component {
     const texts = this.props.text.split("\n");
     const lines = texts.map(this.createMultilineTexts);
     return (
-      <div className="preview-container">
-        <svg width="700px" height="470px" viewBox="0 0 700 470">
-          <image href={template} />
-          {lines}
-        </svg>
-      </div>
+      <svg id="svg-preview" width="700px" height="470px" viewBox="0 0 700 470">
+        <image href={template} />
+        {lines}
+      </svg>
     );
   }
 }
