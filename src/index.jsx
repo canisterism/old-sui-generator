@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Preview from "./Preview.jsx";
 import TextArea from "./TextArea.jsx";
 import Downloader from "./downloader";
+import template from "./sui_image.svg";
 import "./index.sass";
 
 class Wrapper extends React.Component {
@@ -11,6 +12,9 @@ class Wrapper extends React.Component {
     this.state = {
       text: "ラッパーに善人はいない"
     };
+    this.bgImage = new Image();
+    this.bgImage.src = template;
+
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
@@ -21,7 +25,7 @@ class Wrapper extends React.Component {
     const svg = document.getElementById("svg-preview");
     if (!window.confirm("ダウンロードしますか?")) return;
 
-    Downloader.svg(svg, 700, 470);
+    Downloader.svg(svg, 700, 470, this.bgImage);
   }
 
   render() {
@@ -35,6 +39,7 @@ class Wrapper extends React.Component {
           cols="50"
           rows="2"
           value={text}
+          template={template}
           handleChange={this.handleChange}
         />
         <button onClick={this._download.bind(this)}>ダウンロードする</button>

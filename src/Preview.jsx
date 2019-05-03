@@ -7,7 +7,9 @@ import "./Preview.sass";
 class Preview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      template: template
+    };
   }
   createMultilineTexts(text, index, arr) {
     const yShift = (index + -0.7) * 3.5 * 16;
@@ -41,7 +43,7 @@ class Preview extends React.Component {
     const lines = texts.map(this.createMultilineTexts);
     return (
       <svg id="svg-preview" width="700px" height="470px" viewBox="0 0 700 470">
-        <image href={template} />
+        <image href={this.state.template} />
         {lines}
       </svg>
     );

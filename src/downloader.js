@@ -16,7 +16,6 @@ function initCanvas(width, height) {
  * @return {string} base64
  */
 function svgToBase64(svg) {
-  alert(svg);
   const data = new XMLSerializer().serializeToString(svg);
   return (
     "data:image/svg+xml;charset=utf-8;base64," +
@@ -43,20 +42,22 @@ export default {
    * @param {number} width
    * @param {number} height
    */
-  svg(svg, width, height) {
+  svg(svg, width, height, bgImage) {
     const tmpImage = new Image();
     initCanvas(width, height);
-
     tmpImage.onload = () => {
       new Promise(resolve => {
-        ctx.drawImage(tmpImage, 0, 0, width, height);
-        console.log(ctx);
-        resolve();
-      }).then(() => {
-        download(canvas.toDataURL("image/png"));
-      });
+        ctx.drawImage(bgImage, 0, 0, width, height);
+        setTimeout(resolve, 0);
+      })
+        .then(() => {
+          ctx.drawImage(tmpImage, 0, 0, width, height);
+          return true;
+        })
+        .then(() => {
+          download(canvas.toDataURL("image/png"));
+        });
     };
-
     tmpImage.src = svgToBase64(svg);
   }
 };
