@@ -17,9 +17,12 @@ class Preview extends React.Component {
       const textWidth = (text.length * 48) / 2;
       const setsuYShift = yShift - 39;
       const transform = "translate(" + "0 " + setsuYShift + ")";
+      const fontSize = {
+        fontSize: 3 + "rem"
+      }
       return (
         <g key={index}>
-          <text x="50%" y="50%" dy={yShift} textAnchor="middle">
+          <text x="50%" y="50%" dy={yShift} textAnchor="middle" style={fontSize} fontFamily="Kurobara Gothiic Black">
             {text}
           </text>
           <image
@@ -43,6 +46,16 @@ class Preview extends React.Component {
     const lines = texts.map(this.createMultilineTexts);
     return (
       <svg id="svg-preview" width="700px" height="470px" viewBox="0 0 700 470">
+        <defs>
+          <style type="text/css">
+            {`@font-face {
+                fontFamily: "Kurobara Gothiic Black"
+                src: url("fonts/kurobara-gothic-black.ttf")
+              }
+            `}
+          </style>
+        </defs>
+
         <image href={this.state.template} />
         {lines}
       </svg>
